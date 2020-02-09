@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="uptPropertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="placeholderPrefix" value="@{" />
+        <property name="placeholderSuffix" value="}" />
+        <property name="location">
+            <value>file:${catalina.home}/conf/app_configs/upt.properties</value>
+        </property>
+    </bean>  
+    
+    <bean id="adService" parent="baseTransactionProxy">
+        <property name="target">
+            <bean class="com.tdsecurities.upt.service.impl.AdServiceImpl" init-method="init">
+             <property name="properties" ref="upt_properties" />
+               
+            </bean>
+       </property>
+    </bean>
+    
+    <bean id="ldapService" parent="baseTransactionProxy">
+        <property name="target">
+            <bean class="com.tdsecurities.upt.service.impl.LdapServiceImpl"  init-method="init">
+                <property name="propertyService" ref="propertyService"/>
+                <property name="ldapIdentityDAO" ref="ldapIdentityDAO" />
+                <property name="ldapAuthenticationDAO" ref="ldapAuthenticationDAO" />
+                <property name="adService" ref="adService" />
+                <property name="authURL" value="@{auth_context.url}" />
+        		<property name="authBaseDN" value="@{auth_context.baseDN}" />
+            </bean>
+       </property>
+    </bean>
+    
+    <!-- LDAP Identity Context -->
+    <bean id="identityContextSource" class="com.tdsecurities.upt.ldap.UptLdapContextSource">
+        <property name="url" value="@{identity_context.url}" />
+        <property name="base" value="@{identity_context.baseDN}" />
+        <property name="userDn" value="@{identity_context.userDn}" />
+        <property name="password" value="@{identity_context.password}" />
+    </bean>
+    
+    <bean id="ldapTemplateIdentity" class="org.springframework.ldap.core.LdapTemplate">
+       <constructor-arg ref="identityContextSource" />
+    </bean>     
+
+    <!-- LDAP Authentication Context -->
+    <bean id="authContextSource" class="com.tdsecurities.upt.ldap.UptLdapContextSource">
+        <property name="url" value="@{auth_context.url}" />
+        <property name="base" value="@{auth_context.baseDN}" />
+        <property name="userDn" value="@{auth_context.userDn}" />
+        <property name="password" value="@{auth_context.password}" />
+    </bean>
+    
+    <bean id="ldapTemplateAuth" class="org.springframework.ldap.core.LdapTemplate">
+        <constructor-arg ref="authContextSource" />
+    </bean>    
+
+    <!-- TDSecurities AD Authentication Context -->
+	<bean id="ldapIdentityDAO" class="com.tdsecurities.upt.persistence.ldap.LdapIdentityDAOImpl">
+	   <property name="ldapTemplate" ref="ldapTemplateIdentity" />
+	</bean>
+
+    <bean id="ldapAuthenticationDAO" class="com.tdsecurities.upt.persistence.ldap.LdapAuthenticationDAOImpl">
+       <property name="ldapTemplate" ref="ldapTemplateAuth" />
+    </bean>
+	
+	<bean id="amConfig_properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location">
+            <value>file:${catalina.home}/conf/app_configs/AMConfig.properties</value>
+        </property>
+	</bean>
+	<bean class="com.tdsecurities.upt.utilities.IdentityConfigUtil" factory-method="initializeIdentityConfigProperties" autowire="autodetect" scope="singleton">
+	 	<constructor-arg ref="amConfig_properties" />
+	</bean>
+	
+	<bean id="upt_properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location">
+            <value>file:${catalina.home}/conf/app_configs/upt.properties</value>
+        </property>
+	</bean>   
+	
+ 	
+</beans>

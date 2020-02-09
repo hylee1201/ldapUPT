@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="FMK" version="2.4" 
+		 xmlns="http://java.sun.com/xml/ns/j2ee" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+    <display-name>WBTS Framework</display-name>
+    
+    
+    
+    <filter>
+    	<filter-name>filterChainProxy</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+    <filter-mapping>
+    	<filter-name>filterChainProxy</filter-name>
+      	<url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>struts-cleanup</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>
+    </filter>    
+    <filter>
+        <filter-name>struts2</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+ 	<servlet>
+		<description>
+			Allow other application to retrieve the menu contribution
+    			from this application
+		</description>
+		<display-name>Menu Servlet</display-name>
+		<icon>
+			<small-icon></small-icon>
+			<large-icon></large-icon>
+		</icon>
+		<servlet-name>Menu Servlet</servlet-name>
+		<servlet-class>
+			com.tdsecurities.wbts.menu.servlet.MenuServlet
+		</servlet-class>
+		<init-param>
+			<param-name>resourceClass</param-name>
+			<param-value>
+				com.tdsecurities.wbts.menu.WBTSMenuGenerator
+			</param-value>
+		</init-param>
+	</servlet>
+<servlet>
+<servlet-name>nvpstoreRouter</servlet-name>
+<servlet-class>org.openspml.v2.transport.RPCRouterServlet</servlet-class>
+<init-param>
+<param-name>dispatchers</param-name>
+<param-value>org.openspml.v2.transport.SPMLViaSoapDispatcher</param-value>
+</init-param>
+<init-param>
+<param-name>trace</param-name>
+<param-value>true</param-value>
+</init-param>
+<init-param>
+<param-name>SpmlViaSoap.spmlMarshallers</param-name>
+<param-value>org.openspml.v2.util.SimpleSPMLMarshaller</param-value>
+</init-param>
+<init-param>
+<param-name>SpmlViaSoap.spmlMarshallers.SimpleSPMLMarshaller.trace</param-name>
+<param-value>true</param-value>
+</init-param>
+<init-param>
+<param-name>SpmlViaSoap.spmlExecutors</param-name>
+<param-value>com.tdsecurities.wbts.provision.SelfRegisterUserStoreExecutor</param-value>
+</init-param>
+</servlet>
+<servlet-mapping>
+<servlet-name>nvpstoreRouter</servlet-name>
+<url-pattern>/spml2</url-pattern>
+</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Menu Servlet</servlet-name>
+		<url-pattern>/menu/*</url-pattern>
+	</servlet-mapping>
+	
+    <context-param>
+        <param-name>org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG</param-name>
+        <!-- param-value>/WEB-INF/tiles.xml,/WEB-INF/tiles-sample.xml</param-value  -->
+        <param-value>/WEB-INF/tiles.xml</param-value>
+    </context-param>  
+	<context-param>
+    	<param-name>contextConfigLocation</param-name>
+    	<param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>        
+		<listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.tdsecurities.wbts.utilities.context.ServletContextHolderListener</listener-class>
+    </listener>
+  
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+ 	<jsp-config>
+        <jsp-property-group>  
+            <description>JSP configuration of all the JSP's under /jsps-one/ folder</description>
+            <url-pattern>*.jsp</url-pattern>
+            <include-prelude>/wbts/jsp/common/tags.jsp</include-prelude>
+            <!--
+            <include-coda>/WEB-INF/fragments/page-footer.jsp</include-coda>
+            <el-enabled>true</el-enabled>
+            <scripting-enabled>true</scripting-enabled>
+            -->
+        </jsp-property-group>
+    </jsp-config>
+
+
+	<error-page>
+		<error-code>400</error-code>
+		<location>/wbts/jsp/error/forward_unavail.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/wbts/jsp/error/forward_unavail.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/wbts/jsp/error/forward_unavail.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/wbts/jsp/error/forward_unavail.jsp</location>
+	</error-page>
+
+ 
+    
+</web-app>

@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+        
+<tiles-definitions>
+
+	<!-- MAIN LAYOUT -->
+	<definition name="main.layout" template="/wbts/jsp/templates/mainLayout.jsp">
+		<put-attribute name="header" value="/jsp/common/header.jsp"/>
+		<put-attribute name="topnav" value="/wbts/jsp/common/top_menu.jsp"/>
+		<put-attribute name="mainBody" value="/wbts/jsp/welcome/blank.jsp"/>
+		<put-attribute name="leftMenu" value="/wbts/jsp/common/left_menu.jsp"/>
+		<put-attribute name="rightMenu" value="/jsp/templates/right_menu.jsp"/>
+		<put-attribute name="footer" value="/wbts/jsp/common/footer.jsp"/>
+	</definition>
+	<!-- RIGHT NAV LAYOUT -->
+	<definition name="rightnav.layout" template="/wbts/jsp/templates/mainLayout.jsp">
+		<put-attribute name="header" value="/jsp/common/header.jsp"/>
+		<put-attribute name="topnav" value="/wbts/jsp/common/top_menu.jsp"/>
+		<put-attribute name="mainBody" value="/wbts/jsp/welcome/welcome.jsp"/>
+ 		<put-attribute name="rightMenu" value="/jsp/templates/right_menu.jsp"/> 
+<!--		<put-attribute name="rightMenu" value="/wbts/jsp/common/right_menu.jsp"/>-->
+		<put-attribute name="footer" value="/wbts/jsp/common/footer.jsp"/>
+	</definition>
+	<!--  LEFT NAV LAYOUT -->
+	<definition name="leftnav.layout" template="/wbts/jsp/templates/mainLayout.jsp">
+		<put-attribute name="header" value="/jsp/common/header.jsp"/>
+		<put-attribute name="topnav" value="/wbts/jsp/common/top_menu.jsp"/>
+		<put-attribute name="mainBody" value="/wbts/jsp/welcome/blank.jsp"/>
+		<put-attribute name="leftMenu" value="/wbts/jsp/common/left_menu.jsp"/>
+		<put-attribute name="footer" value="/wbts/jsp/common/footer.jsp"/>
+	</definition>
+	<!--  SIMPLE LAYOUT -->
+	<definition name="simple.layout" template="/wbts/jsp/templates/mainLayout.jsp">
+		<put-attribute name="header" value="/jsp/common/header.jsp"/>
+		<put-attribute name="topnav" value="/wbts/jsp/common/top_menu.jsp"/>
+		<put-attribute name="mainBody" value="/wbts/jsp/welcome/blank.jsp"/>
+		<put-attribute name="footer" value="/wbts/jsp/common/footer.jsp"/>
+	</definition>
+	<!--  BASIC LAYOUT -->
+	<definition name="basic.layout" template="/wbts/jsp/templates/basicLayout.jsp">
+		<put-attribute name="header" value="/jsp/common/header.jsp"/>
+		<put-attribute name="mainBody" value="/wbts/jsp/welcome/blank.jsp"/>
+		<put-attribute name="footer" value="/wbts/jsp/common/footer.jsp"/>
+	</definition>
+	<!--  BASIC LAYOUT SIMPLE FOOTER-->
+	<definition name="basic.simplefooter.layout" template="/wbts/jsp/templates/basicLayout.jsp">
+		<put-attribute name="header" value="/jsp/common/header.jsp"/>
+		<put-attribute name="mainBody" value="/wbts/jsp/welcome/blank.jsp"/>
+		<put-attribute name="footer" value="/wbts/jsp/common/footer_simple.jsp"/>
+	</definition>
+	<definition name="basic.mainbody.layout" template="/wbts/jsp/templates/mainLayout.jsp">
+		<put-attribute name="mainBody" value="/wbts/jsp/welcome/blank.jsp"/>
+	</definition>
+	<definition name="simple.actionmessage" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/common/action_messages.jsp"/>
+	</definition>
+	
+	<definition name="action.message" template="/wbts/jsp/common/action_messages.jsp"/>
+	
+	<definition name="system.info" template="/wbts/jsp/common/sysinfo.jsp"/>
+		
+	<!--  AJAX LAYOUT -->
+	<definition name="ajax.layout" template="/wbts/jsp/templates/ajaxTimeOut.jsp"/>
+	<!-- AJAX -->
+	<definition name="ajax.TimeOut" extends="ajax.layout">
+		<put-attribute name="message" value="TimeOut"/>
+	</definition>
+	<!-- WELCOME TAB -->
+	<definition name="welcome.index" extends="main.layout">
+		<put-attribute name="mainBody" value="/jsp/welcome/welcome.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/welcome.css"/>
+            <add-attribute value="/styles/upt.css"/>
+		</put-list-attribute>		
+	</definition>
+	<definition name="page.links" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/welcome/links.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/links.css"/>
+		</put-list-attribute>				
+	</definition>
+	<!-- ABOUT US TAB -->
+	<definition name="aboutus.index" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/about_us/aboutus.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/aboutus.css"/>
+		</put-list-attribute>						
+	</definition>
+	<definition name="aboutus.contact" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/about_us/contactus.jsp"/>
+	</definition>
+	<definition name="aboutus.siteMap" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/about_us/sitemap.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/links.css"/>
+		</put-list-attribute>						
+	</definition>
+	<definition name="aboutus.disclaimer" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/about_us/disclaimer.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/aboutus.css"/>
+		</put-list-attribute>								
+	</definition>
+	<!-- SECURITY / LOGIN-->
+	<definition name="login" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/security/login.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/login.css"/>
+		</put-list-attribute>						
+	</definition>
+	<definition name="login.extended" template="/wbts/jsp/security/login-extended.jsp"/>
+	
+	<!-- Request-Access Form -->
+	<definition name="request.access" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/welcome/requestaccess.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/userForm.css"/>
+		</put-list-attribute>						
+	</definition>
+	<definition name="request.access.standard" template="/wbts/jsp/welcome/requestaccess-standard.jsp"/>
+	<definition name="request.access.extended" template="/wbts/jsp/welcome/blank.jsp"/>
+	
+	<!-- Requesst-Access Confirmation -->	
+	<definition name="request.access.confirmation" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/welcome/requestaccessconfirm.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/userForm.css"/>
+		</put-list-attribute>										
+	</definition>
+
+	<definition name="request.access.confirmation.standard" template="/wbts/jsp/welcome/requestaccessconfirm-standard.jsp"/>
+	<definition name="request.access.confirmation.extended" template="/wbts/jsp/welcome/blank.jsp"/>
+		
+	<definition name="terms.of.use" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/security/terms_of_use.jsp"/>
+	</definition>
+	<definition name="popup.TimeOut" extends="basic.simplefooter.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/security/popup_timeout.jsp"/>
+	</definition>
+	<!-- ADMIN TAB -->
+	<definition name="user.list" extends="main.layout">
+		<put-attribute name="mainBody" value="user.list.tile"/>
+	</definition>
+	
+	<definition name="user.list.tile" template="/wbts/jsp/admin/userlist.jsp"/>
+		
+	<definition name="user" extends="main.layout">
+	  <put-attribute name="mainBody" value="/wbts/jsp/admin/user.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/userForm.css"/>
+		</put-list-attribute>	  
+	</definition>
+	
+	<definition name="user.info" template="/wbts/jsp/admin/userinfo.jsp"/>
+	
+	<definition name="user.info.extended" template="/wbts/jsp/welcome/blank.jsp"/>
+
+	<definition name="user.info.profile" extends="user.info"/>
+
+	<!-- Update-Profile Form -->
+	<definition name="update.profile" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/admin/updateprofile.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/userForm.css"/>
+		</put-list-attribute>						
+	</definition>
+	<definition name="update.profile.standard" template="/wbts/jsp/welcome/requestaccess-standard.jsp"/>
+	<definition name="update.profile.extended" template="/wbts/jsp/welcome/blank.jsp"/>
+	
+	<!-- Update-Profile Complete -->	
+	<definition name="update.profile.complete" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/common/blank_messages_only.jsp"/>
+	</definition>
+
+	<definition name="change.password" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/admin/changepassword.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/changepassword.css"/>
+		</put-list-attribute>								
+	</definition>
+	<definition name="change.password.complete" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/common/blank_messages_only.jsp"/>
+	</definition>
+	<definition name="search.user" extends="main.layout">
+		<put-attribute name="mainBody" value="search.user.tile" type="tile"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/userForm.css"/>
+		</put-list-attribute>						
+	</definition>
+	<definition name="search.user.tile" template="/wbts/jsp/admin/searchuser.jsp"/>	
+	<definition name="exception.list" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/admin/exceptionlist.jsp"/>
+	</definition>
+	<definition name="property.list" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/admin/propertylist.jsp"/>
+	</definition>
+	<definition name="text.property.list" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/admin/textpropertylist.jsp"/>
+	</definition>
+	<definition name="text.property.edit" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/admin/textpropertyedit.jsp"/>
+	</definition>
+	<definition name="system.resource" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/admin/sysresource.jsp"/>
+	</definition>
+	<definition name="system.libraries" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/admin/syslibraries.jsp"/>
+	</definition>
+	<definition name="query.tool" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/query/querytool.jsp"/>
+	</definition>
+	<definition name="query.tool.admin" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/query/querytool-admin.jsp"/>
+	</definition>
+	<definition name="query.tool.admin.runquery" extends="basic.simplefooter.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/query/querytool-admin-runquery.jsp"/>
+	</definition>
+	<definition name="query.tool.edit" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/query/querytool-edit.jsp"/>
+	</definition>
+	<!-- ERROR -->
+	<definition name="unavailable" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/error/unavailable.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/error.css"/>
+		</put-list-attribute>								
+	</definition>
+	<definition name="global_error" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/error/error_page.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/error.css"/>
+		</put-list-attribute>								
+	</definition>
+	<definition name="popup_global_error" extends="basic.simplefooter.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/error/error_page.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/error.css"/>
+		</put-list-attribute>										
+	</definition>
+	<definition name="error" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/error/error.jsp"/>
+	</definition>
+	<definition name="access.denied" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/error/accessdenied.jsp"/>
+		<put-list-attribute name="moreCss">
+			<add-attribute value="/wbts/styles/error.css"/>
+		</put-list-attribute>								
+	</definition>
+	<definition name="dao.error" extends="main.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/error/daoerror.jsp"/>
+	</definition>
+	<!-- Calendar TAB -->
+	<definition name="calendar.display" extends="rightnav.layout">
+		<put-attribute name="mainBody" value="/wbts/jsp/calendar/show_calendar.jsp"/>
+	</definition>
+	<!--*****************************************************************-->
+	<!--Developers should add their definitions in the following section.-->
+	<!--*****************************************************************-->
+	<definition name="welcome.sample" extends="main.layout">
+		<put-attribute name="mainBody" value="/jsp/welcome/sample_welcome.jsp"/>
+	</definition>
+	
+	<!--*****************************************************************-->
+	<!--Developers should add their definitions in the following section.-->
+	<!--*****************************************************************-->
+	
+	<!--  POPUP LAYOUT-->
+	<definition name="popup.layout" template="/jsp/templates/popupLayout.jsp">		
+		<put-attribute name="mainBody" value="/wbts/jsp/welcome/blank.jsp"/>		
+	</definition>
+	
+	<!-- BASIC LAYOUT WITH HEADER -->
+	<definition name="basic.layout.with.header" template="/jsp/templates/basicLayoutWithHeader.jsp">
+		<put-attribute name="header" value="/jsp/common/header.jsp"/>		
+		<put-attribute name="mainBody" value="/wbts/jsp/welcome/blank.jsp"/>			
+	</definition>
+	
+	<!-- Currency Rates Section -->
+	<definition name="self_registration.cr_user" extends="popup.layout">
+		<put-attribute name="mainBody" value="/jsp/cr_self_registration/cr_user_reg.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+        </put-list-attribute>                                       
+	</definition>
+
+    <definition name="self_registration.cr_user.confirmation" extends="popup.layout">
+        <put-attribute name="mainBody" value="/jsp/cr_self_registration/cr_user_reg_confirmation.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+        </put-list-attribute>                                       
+    </definition>
+	
+	<definition name="self_registration.er_user" extends="popup.layout">
+		<put-attribute name="mainBody" value="/jsp/er_self_registration/er_user_registration.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+        </put-list-attribute>                                       
+	</definition>
+
+    <definition name="self_registration.er_user.confirmation" extends="popup.layout">
+        <put-attribute name="mainBody" value="/jsp/er_self_registration/er_user_registration_confirmation.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+	<definition name="cr_admin.welcome" extends="main.layout">
+		<put-attribute name="mainBody" value="/jsp/cr_admin/home.jsp"/>
+	</definition>
+
+    <definition name="cr_admin.pending_request_list.tile" template="/jsp/cr_admin/pending_request_list.jsp"/>
+
+    <definition name="cr_admin.pending_request_report" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/cr_admin/pending_request_report.jsp"/>
+    </definition>
+
+    <definition name="cr_admin.pending_request_management" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/cr_admin/cr_registration_request_form.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+        </put-list-attribute>                                       
+    </definition>
+
+    <definition name="cr_admin.pending_request_confirmation" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/cr_admin/pending_request_confirmation.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+        </put-list-attribute>                                       
+    </definition>
+
+    <definition name="cr_admin.user_registration" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/cr_admin/user_registration.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>
+
+    <definition name="cr_admin.user_registration_confirmation" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/cr_admin/user_registration_confirmation.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+        </put-list-attribute>                                       
+    </definition>
+
+    <definition name="cr_admin.user_enrollment" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/cr_admin/user_enrollment.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+        </put-list-attribute>                                       
+    </definition>
+
+    <definition name="cr_admin.user_list.tile" template="/jsp/cr_admin/cr_user_list.jsp"/>
+
+    <definition name="cr_admin.user_search" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/cr_admin/user_search.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                       
+    </definition>
+
+    <definition name="cr_admin.user_management" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/cr_admin/user_management.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+        </put-list-attribute>                                       
+    </definition>
+
+    <definition name="cr_admin.rejected_request_list.tile" template="/jsp/cr_admin/rejected_request_list.jsp"/>
+
+    <definition name="cr_admin.rejected_request_report" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/cr_admin/rejected_request_report.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>
+
+    <definition name="cr_admin.sso_user_list.tile" template="/jsp/cr_admin/sso_user_list.jsp"/>
+
+    <definition name="cr_admin.sso_user_report" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/cr_admin/sso_user_report.jsp"/>
+    </definition>
+	
+	<!-- TDFX section -->
+
+    <definition name="tdfx_admin.welcome" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/tdfx_admin/home.jsp"/>
+    </definition>
+	
+    <definition name="tdfx_admin.pending_request_list.tile" template="/jsp/tdfx_admin/pending_request_list.jsp"/>
+
+    <definition name="tdfx_admin.pending_request_report" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/tdfx_admin/pending_request_report.jsp"/>
+    </definition>
+    
+    <definition name="tdfx_admin.registration_selection" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/tdfx_admin/registration_selection.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>
+
+    <definition name="tdfx_admin.referral_form1" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/tdfx_admin/referral_form1.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>
+
+    <definition name="tdfx_admin.referral_form1_confirmation" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/tdfx_admin/referral_form1_confirmation.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>
+	
+	<definition name="tdfx_admin.lookupSSOUser" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/tdfx_admin/lookupSSOUser.jsp"/>
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/styles/upt.css"/>
+            <add-attribute value="/wbts/styles/userForm.css"/>
+        </put-list-attribute>                                       
+    </definition>	
+    
+    <definition name="tdfx_admin.lookupSSOUserList" template="/jsp/tdfx_admin/lookupSSOUserList.jsp"/>
+    
+    <definition name="tdfx_admin.provision_sso_user" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/tdfx_admin/provisionSSOUser.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <definition name="tdfx_admin.change_sso_user_password" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/tdfx_admin/changeTdfxSSOUserPassword.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <definition name="tdfx_admin.referral_form3" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/tdfx_admin/referral_form3.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>
+
+    <definition name="tdfx_admin.referral_form3_confirmation" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/tdfx_admin/referral_form3_confirmation.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <definition name="user.common_user_profile" extends="popup.layout">
+        <put-attribute name="mainBody" value="user.common_user_profile.tabContent"/>              
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/styles/upt.css"/>
+            <add-attribute value="/styles/top_menu.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <definition name="user.common_user_profile.tabContent" template="/jsp/user/userProfileBase.jsp">        
+        <put-attribute name="tabContent" value="/jsp/user/commonUserProfile.jsp"/>
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/styles/upt.css"/>
+            <add-attribute value="/styles/top_menu.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <definition name="user.secret_questions" extends="popup.layout">
+        <put-attribute name="mainBody" value="user.secret_questions.tabContent"/>        
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/styles/upt.css"/>
+            <add-attribute value="/styles/top_menu.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <definition name="user.secret_questions.tabContent" template="/jsp/user/userProfileBase.jsp">        
+        <put-attribute name="tabContent" value="/jsp/user/secretQuestions.jsp"/>
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/styles/upt.css"/>
+            <add-attribute value="/styles/top_menu.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <definition name="user.cr_user_profile" extends="popup.layout">
+        <put-attribute name="mainBody" value="user.cr_user_profile.tabContent"/>        
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/styles/upt.css"/>
+            <add-attribute value="/styles/top_menu.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <definition name="user.cr_user_profile.tabContent" template="/jsp/user/userProfileBase.jsp">        
+        <put-attribute name="tabContent" value="/jsp/user/crUserProfile.jsp"/>
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/styles/upt.css"/>
+            <add-attribute value="/styles/top_menu.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <definition name="user.er_user_profile" extends="popup.layout">
+        <put-attribute name="mainBody" value="user.er_user_profile.tabContent"/>        
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/styles/upt.css"/>
+            <add-attribute value="/styles/top_menu.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <definition name="user.er_user_profile.tabContent" template="/jsp/user/userProfileBase.jsp">        
+        <put-attribute name="tabContent" value="/jsp/user/erUserProfile.jsp"/>
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/styles/upt.css"/>
+            <add-attribute value="/styles/top_menu.css"/>
+        </put-list-attribute>                                       
+    </definition>
+	
+	<definition name="user.secret_questions_activation" extends="basic.layout.with.header">
+        <put-attribute name="mainBody" value="/jsp/user/secretQuestionsActivation.jsp"/>        
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/styles/upt.css"/>
+            <add-attribute value="/styles/top_menu.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <definition name="user.password_change" extends="popup.layout">
+        <put-attribute name="mainBody" value="/jsp/user/passwordChange.jsp"/>        
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/styles/upt.css"/>
+            <add-attribute value="/styles/top_menu.css"/>
+        </put-list-attribute>                                       
+    </definition>    
+    
+    <definition name="user.user_password_changed" extends="popup.layout">
+        <put-attribute name="mainBody" value="/jsp/user/passwordChangedMessage.jsp"/>        
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/styles/upt.css"/>
+            <add-attribute value="/styles/top_menu.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <!-- SSO Admin section -->
+    <definition name="ssoadmin.identity_seeding.upload" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/sso_admin/identity_seeding_upload.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>
+
+    <definition name="ssoadmin.identity_seeding.upload_conf" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/sso_admin/identity_seeding_upload_conf.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>
+
+    <definition name="ssoadmin.new_user" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/sso_admin/editSSOUser.jsp"/>        
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/styles/upt.css"/>
+            <add-attribute value="/styles/top_menu.css"/>
+            <add-attribute value="/wbts/styles/userForm.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <definition name="ssoadmin.administer_users" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/sso_admin/administerSSOUsers.jsp"/>        
+        <put-list-attribute name="moreCss">            
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>
+    
+    <definition name="ssoadmin.dminister_users_list.tile" template="/jsp/sso_admin/administerSSOUsersList.jsp"/>
+    
+    <!--  ER Section -->   
+    <definition name="er_admin.welcome" extends="main.layout">
+		<put-attribute name="mainBody" value="/jsp/er_admin/home.jsp"/>
+	</definition>
+	<definition name="er_admin.user_edit" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/er_admin/er_user_edit.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+        </put-list-attribute>                                       
+    </definition>   
+    <definition name="er_admin.user_search" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/er_admin/er_user_search.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                       
+    </definition>
+    <definition name="er_admin.pending_request_report" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/er_admin/er_pending_request_list.jsp"/>
+    </definition>
+    <definition name="er_admin.registration.request.form" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/er_admin/er_registration_request_form.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>          
+    <definition name="er_admin.registration.user.check" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/er_admin/er_user_check.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>    
+    <definition name="er_admin.registration.form" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/er_admin/er_registration_form.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>      
+    <definition name="er_admin.registration.confirmation" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/er_admin/er_registration_confirmation.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+        </put-list-attribute>                                       
+    </definition>  
+    <definition name="employee.search.form" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/common/employee_search_form.jsp"/>
+        <put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>                                       
+    </definition>        
+    <definition name="employee.list" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/common/employee_search_list.jsp"/>
+    </definition>       
+    
+    <definition name="er_admin.sso_user_lookup" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/er_admin/er_sso_user_lookup.jsp"/>
+    </definition>  
+
+	<definition name="er_admin.reporting_tool" extends="main.layout">
+        <put-attribute name="mainBody" value="/jsp/er_admin/er_reporting_tool.jsp"/>
+    </definition>      
+    
+    <!-- APP Admin section -->   
+    <definition name="app_admin.register_user" extends="main.layout">
+		<put-attribute name="mainBody" value="/jsp/common/apps/register_user.jsp"/>
+		<put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>            
+	</definition>
+	<definition name="app_admin.search_user" extends="main.layout">
+		<put-attribute name="mainBody" value="/jsp/common/apps/search_user.jsp"/>
+		<put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>            
+	</definition>
+	<definition name="app_admin.edit_user" extends="main.layout">
+		<put-attribute name="mainBody" value="/jsp/common/apps/edit_user.jsp"/>
+		<put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>            
+	</definition>
+	<definition name="app_admin.lookup_user" extends="main.layout">
+		<put-attribute name="mainBody" value="/jsp/common/apps/lookup_sso_user.jsp"/>
+	</definition>
+	<definition name="app_admin.reporting_tool" extends="main.layout">
+		<put-attribute name="mainBody" value="/jsp/common/apps/report.jsp"/>
+		<put-list-attribute name="moreCss">
+            <add-attribute value="/wbts/styles/userForm.css"/>
+            <add-attribute value="/styles/upt.css"/>
+        </put-list-attribute>     
+	</definition>
+	
+	<definition name="app_admin.users_list.tile" template="/jsp/common/apps/user_list.jsp"/>
+	<definition name="app_admin.users_report.tile" template="/jsp/common/apps/user_report_list.jsp"/>
+</tiles-definitions>

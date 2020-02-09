@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>wbts</short-name>
+	<uri>/wbts-tags</uri>
+	<description>
+		Custom tags provided by Wbts Framework.
+		($Id: wbts-tags.tld,v 1.2 2014/02/06 15:51:39 vorota2 Exp $)
+	</description>
+
+	<tag>
+		<name>access</name>
+		<tag-class>com.tdsecurities.wbts.web.WbtsAccessTag</tag-class>
+		<body-content>scriptless</body-content>
+		<description> 
+			Allows or denies access to the section of a web page.			
+						
+			&lt;p&gt;There are 2 ways of specifying the section/role mapping: either in an xml or the database.&lt;/p&gt;
+						
+&lt;p&gt;Database mapping is done through 2 tables: fmk_section and fmk_section_role.&lt;/p&gt;
+&lt;p&gt;It is possible to dynamically switch between 2 options by changing 
+FMK_SECTION_TAG_IMPLEMENTATION in fmk_property table. The following options are available: "db" and "xml". 
+Although the default is "xml", it is recommended to keep the mapping in the database as the best practice.&lt;/p&gt;
+			
+		</description>
+
+		<attribute>
+			<name>section</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>				
+				Evaluates given section name to user roles, provides or
+				denies access to the portion of page for this section
+				name.
+			</description>
+		</attribute>
+		
+		<example>
+&lt;wbts:access section="section1"&gt;
+  ... section1 ...
+&lt;/wbts:access&gt;	 			
+		</example>
+	</tag>
+	
+	<tag>
+		<name>user</name>
+		<tag-class>
+			com.tdsecurities.wbts.web.AuthenticationTag
+		</tag-class>
+		<description>
+			This is the user access tag (UAT), which is used for
+			rendering and displaying user information.  The user information
+			is based on user object created and properties of the current
+			Authentication object.
+		</description>
+		<attribute>
+			<name>operation</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Must be one of the methods of an instance that
+				implements the UserDetails interface. Use the JavaBean
+				style property, you can provide a custom prefix for the
+				method to call.
+				
+				&lt;p&gt;Available operations are: &lt;code&gt;
+				username, password, retypePassword, firstName, lastName, email, status
+				lastLogin, createdAt, createdBy, lastModifiedBy, lastModifiedAt, 
+				passwordChangedAt, passwordChangeBy, accessTimes, userComments, 
+				company, phoneNumber, phoneNumberExt, occupation, sessionTimeout, address.
+				&lt;code&gt;
+				
+				
+			</description>
+		</attribute>
+
+		<attribute>
+			<name>methodPrefix</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Must be get or is. This is used to determine the name of
+				the method to be called. The default is get.
+			</description>
+		</attribute>
+		<attribute>
+			<name>format</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Used to apply format to operation (i.e. datetime)
+			</description>
+		</attribute>
+		<example>
+			&lt;wbts:user operation="lastLogin" format="EEEE MMMM d, yyyy H:mm aa"/&gt;
+		</example>
+	</tag>
+	
+	<tag>
+		<name>message</name>
+		<tag-class>com.tdsecurities.wbts.web.WbtsMessageTag</tag-class>
+		<body-content>scriptless</body-content>
+		<description>
+			WBTS Messaging Support
+		</description>
+		
+		<attribute>
+			<name>messageId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Message ID
+			</description>
+		</attribute>
+
+		<attribute>
+			<name>locale</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Sets language for the message, it it is not set then 
+				defaults to global default
+			</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>param</name>
+		<tag-class>com.tdsecurities.wbts.web.WbtsMessageParamTag</tag-class>
+		<body-content>scriptless</body-content>
+		<description>
+			WBTS Messaging Parameter
+		</description>
+	</tag>
+	
+	<tag>
+		<name>property</name>
+		<tag-class>com.tdsecurities.wbts.web.WbtsPropertyTag</tag-class>
+		<body-content>scriptless</body-content>
+		<description>
+			Get the property value from fmk_property table
+		</description>
+
+		<attribute>
+			<name>scope</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Property Scope
+			</description>
+		</attribute>
+		
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+				Property Name
+			</description>
+		</attribute>		
+	</tag>	
+
+	<tag>
+		<name>paging</name>
+		<tag-class>com.tdsecurities.wbts.web.WbtsPagingTag</tag-class>
+		<body-content>empty</body-content>
+		<description>
+			Renders generic pagination with page numbers and navigation
+		</description>
+		
+		<attribute>
+			<name>currentPage</name>
+		   	<required>true</required>
+		   	<rtexprvalue>true</rtexprvalue>
+			<description>
+				current page number
+			</description>
+		</attribute>
+
+		<attribute>
+			<name>pageSize</name>
+		   	<required>true</required>
+		   	<rtexprvalue>true</rtexprvalue>
+			<description>
+				number of records per page
+			</description>
+		</attribute>
+
+		<attribute>
+			<name>totalRecords</name>
+		   	<required>true</required>
+		   	<rtexprvalue>true</rtexprvalue>
+			<description>
+				total number of records
+			</description>
+		</attribute>
+		
+		<attribute>
+			<name>url</name>
+		   	<required>true</required>
+		   	<rtexprvalue>true</rtexprvalue>
+			<description>
+				target url to be called on click 
+			</description>
+		</attribute>
+
+		<attribute>
+			<name>anchor</name>
+		   	<required>false</required>
+		   	<rtexprvalue>true</rtexprvalue>
+			<description>
+				anchor on the page if needed
+			</description>
+		</attribute>
+
+		<attribute>
+			<name>cssClass</name>
+		   	<required>false</required>
+		   	<rtexprvalue>true</rtexprvalue>
+			<description>
+				css class name if needed
+			</description>
+		</attribute>
+	</tag>	
+
+</taglib>
